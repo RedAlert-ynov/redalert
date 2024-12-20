@@ -1,0 +1,18 @@
+.concept{
+    flex-direction: column;
+    h1{
+        font-family: "Inter",bold;
+    }
+    h3{
+        font-family: "Inter",medium;
+    }
+    button{
+        width: 10%;
+        border-radius: 10px;
+        border: none;
+        height: 40px;
+        width: 10%;
+        background-color: #5297F2;
+        color: white;
+    }
+}

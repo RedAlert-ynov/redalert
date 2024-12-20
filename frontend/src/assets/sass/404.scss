@@ -1,0 +1,30 @@
+.error404{
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    h1{
+        font-size: 60px;
+        font-family: 'Inter',bold;
+    }
+    h2{
+        font-family: "Inter",medium;
+    }
+    figure{
+        display: flex;
+        justify-content: center;
+        margin: auto;
+        img{
+            width: 50%;
+        }
+    }
+    a{
+        button{
+            background-color: #5297F2;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            height: 40px;
+            font-family: "Inter",medium;
+        }
+    }
+}

@@ -1,0 +1,57 @@
+header{
+    width: 100%;
+    top : 0;
+    padding: 10px 0;
+    background-color: black;
+    color: white;
+    font-family: "Inter", bold;
+    nav{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        a{
+            color: white;
+            text-decoration: none;
+        }
+        figure{
+            img{
+                width: 75%;
+            }
+        }
+        .loginsignup{
+            background-color: #272A36;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            border-radius: 10px;
+            .login{
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                border-right: white 1px solid;
+                margin-right: 10px;
+            }
+            .signup{
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width:700px) {
+    header{
+        nav{
+            p{
+                display: none;
+            }
+            div{
+                p{
+                    display: block;
+                }
+            }
+        }
+    }
+}
