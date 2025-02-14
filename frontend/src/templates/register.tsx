@@ -7,6 +7,7 @@ import Header from './header';
 
 const Register:React.FC=()=>{
     return(
+        
         <div>
             <Header></Header>
             <section className='register'>

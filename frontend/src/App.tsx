@@ -8,17 +8,18 @@ import Mainpage from './templates/mainpage';
 import Concept from "./templates/concept";
 import Error404 from "./templates/404";
 import Register from "./templates/register";
-
+import Login from "./templates/login";
 const App: React.FC = () => {
-  return (
-      <Router>
-          <Routes>
-              <Route path="/" element={<Mainpage />} />
-              < Route path="/concept" element={<Concept/>}/>
-              <Route path="*" element={<Error404 />} />
-              <Route path="/register" element={<Register/>}/>
-          </Routes>
-      </Router>
+return (
+    <Router>
+        <Routes>
+            <Route path="/" element={<Mainpage />} />
+            <Route path="/concept" element={<Concept/>}/>
+            <Route path="*" element={<Error404 />} />
+            <Route path="/register" element={<Register/>}/>
+            <Route path="/login" element={<Login/>}/>
+        </Routes>
+    </Router>
   );
 };
 
