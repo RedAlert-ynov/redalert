@@ -7,6 +7,7 @@ import './App.css'
 import Mainpage from './templates/mainpage';
 import Concept from "./templates/concept";
 import Error404 from "./templates/404";
+import Register from "./templates/register";
 
 const App: React.FC = () => {
   return (
@@ -15,6 +16,7 @@ const App: React.FC = () => {
               <Route path="/" element={<Mainpage />} />
               < Route path="/concept" element={<Concept/>}/>
               <Route path="*" element={<Error404 />} />
+              <Route path="/register" element={<Register/>}/>
           </Routes>
       </Router>
   );

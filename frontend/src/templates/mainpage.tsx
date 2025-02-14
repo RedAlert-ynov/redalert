@@ -1,6 +1,7 @@
 import Header from "./header";
 import intro from '../assets/images/mainpage.png'
 import '../assets/sass/mainpage.scss'
+import Button from '@mui/material/Button';
 
 const Mainpage: React.FC = () => {
     return (
@@ -21,9 +22,7 @@ const Mainpage: React.FC = () => {
                     Vous pouvez aussi consulter les scénarios d'autres utilisateurs et faire un retour dessus.
                 </h3>
                 <a href="/concept">
-                    <button>
-                        Découvrir Red Alert
-                    </button>
+                <Button variant='contained'>Découvrir Red Alert</Button>
                 </a>
                 </div>
                 <div>

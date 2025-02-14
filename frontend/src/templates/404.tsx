@@ -1,6 +1,8 @@
 import 'react'
 import alarm from '../assets/images/alarm.png'
 import '../assets/sass/404.scss'
+import Button from '@mui/material/Button';
+
 const Error404:React.FC=()=>{
     return(
         <div>
@@ -13,9 +15,7 @@ const Error404:React.FC=()=>{
             <h2>La page recherchée n'existe pas</h2>
             <br></br>
             <a href='/'>
-                <button>
-                    Retour à l'accueil
-                </button>
+            <Button variant='contained' color="error">retour à l'accueil</Button>
             </a>
             </section>
         </div>

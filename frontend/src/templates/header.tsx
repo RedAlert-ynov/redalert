@@ -2,8 +2,9 @@ import 'react'
 import '../assets/sass/header.scss'
 
 import logo from '../assets/images/RedAlert_Dark 1.png'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faRightToBracket,faUserPlus} from '@fortawesome/free-solid-svg-icons'
+import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import Button from '@mui/material/Button';
 const Header: React.FC = () => {
     return (
     <header>
@@ -15,15 +16,15 @@ const Header: React.FC = () => {
                 <p>Accueil</p>
             </a>
             <p>Qui sommes nous?</p>
+            <a href='/concept'>
             <p>Le concept</p>
-            <div className='loginsignup'>
+            </a>
+            < div className='loginsignup'>
             <div className='login'>
-                <FontAwesomeIcon icon={faRightToBracket} />
-                <p>&nbsp;Connexion&nbsp;</p>
+            <Button variant='contained' endIcon={< MeetingRoomIcon/>} >Login</Button>
             </div>
             <div className='signup'>
-            <FontAwesomeIcon icon={faUserPlus} />
-            <p>&nbsp;Inscription&nbsp;</p>
+            <Button variant='contained' endIcon={< PersonAddIcon/>}>Signup</Button>
             </div>
             </div>
         </nav>
