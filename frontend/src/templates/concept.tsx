@@ -1,6 +1,8 @@
 import 'react'
 import '../assets/sass/concept.scss'
 import Header from './header'
+import Button from '@mui/material/Button';
+
 const Concept: React.FC=()=>{
     return(
         <div>
@@ -14,7 +16,8 @@ const Concept: React.FC=()=>{
             </h3>
             <p> Inscrivez vous dès maintenant et créez vos scénarios!</p>
             <a href='/login'>
-                <button>Créez un compte</button>
+            <Button variant='contained' color="error">Créer un compte</Button>
+
             </a>
             </section>
         </div>

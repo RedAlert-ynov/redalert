@@ -1,7 +1,6 @@
 header{
     width: 100%;
     top : 0;
-    padding: 10px 0;
     background-color: black;
     color: white;
     font-family: "Inter", bold;
@@ -20,22 +19,11 @@ header{
             }
         }
         .loginsignup{
-            background-color: #272A36;
             display: flex;
             align-items: center;
-            justify-content: space-around;
-            border-radius: 10px;
-            .login{
-                display: flex;
-                justify-content: space-around;
-                align-items: center;
-                border-right: white 1px solid;
-                margin-right: 10px;
-            }
-            .signup{
-                display: flex;
-                justify-content: space-around;
-                align-items: center;
+            justify-content: space-between;
+            button{
+                background-color: #272A36;
             }
         }
     }
