@@ -1,5 +1,6 @@
 import app from '@adonisjs/core/services/app'
 import { HttpContext, ExceptionHandler } from '@adonisjs/core/http'
+import { errors } from '@adonisjs/limiter'
 
 export default class HttpExceptionHandler extends ExceptionHandler {
   /**
@@ -13,6 +14,14 @@ export default class HttpExceptionHandler extends ExceptionHandler {
    * response to the client
    */
   async handle(error: unknown, ctx: HttpContext) {
+    // Gérer l'exception de rate limiting
+    if (error instanceof errors.E_TOO_MANY_REQUESTS) {
+      return ctx.response.status(429).send({
+        error: 'Trop de requêtes. Réessayez plus tard.',
+        retryAfter: error.response.availableIn, // Temps restant en secondes
+      })
+    }
+
     return super.handle(error, ctx)
   }
 
