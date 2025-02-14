@@ -9,9 +9,11 @@ const Header: React.FC = () => {
     return (
     <header>
         <nav>
+            < a href='/'>
             <figure>
             <img src={logo} alt="Logo" />
             </figure>
+            </a>
             <a href='/'>
                 <p>Accueil</p>
             </a>
@@ -20,12 +22,13 @@ const Header: React.FC = () => {
             <p>Le concept</p>
             </a>
             < div className='loginsignup'>
-            <div className='login'>
+            <a href='/login'>
             <Button variant='contained' endIcon={< MeetingRoomIcon/>} >Login</Button>
-            </div>
-            <div className='signup'>
-            <Button variant='contained' endIcon={< PersonAddIcon/>}>Signup</Button>
-            </div>
+            </a>
+            <a href='/register'>
+                <Button variant='contained' endIcon={< PersonAddIcon/>}>Signup</Button>
+            </a>
+            
             </div>
         </nav>
     </header>
