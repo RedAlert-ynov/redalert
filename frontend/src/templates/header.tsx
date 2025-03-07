@@ -17,7 +17,9 @@ const Header: React.FC = () => {
             <a href='/'>
                 <p>Accueil</p>
             </a>
-            <p>Qui sommes nous?</p>
+            <a href='/qui_sommes_nous'>
+                <p>Qui sommes nous?</p>
+            </a>
             <a href='/concept'>
             <p>Le concept</p>
             </a>

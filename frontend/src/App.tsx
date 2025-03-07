@@ -9,6 +9,7 @@ import Concept from "./templates/concept";
 import Error404 from "./templates/404";
 import Register from "./templates/register";
 import Login from "./templates/login";
+import Quisommesnous from "./templates/qui_sommes_nous";
 const App: React.FC = () => {
 return (
     <Router>
@@ -18,6 +19,7 @@ return (
             <Route path="*" element={<Error404 />} />
             <Route path="/register" element={<Register/>}/>
             <Route path="/login" element={<Login/>}/>
+            <Route path="qui_sommes_nous" element={<Quisommesnous/>}/>
         </Routes>
     </Router>
   );
