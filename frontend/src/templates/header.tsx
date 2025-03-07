@@ -7,14 +7,18 @@ import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import Button from '@mui/material/Button';
 import ListIcon from '@mui/icons-material/List';
 import CloseIcon from '@mui/icons-material/Close';
+import LogoutIcon from '@mui/icons-material/Logout';
+import { useStore } from '../store/store';
+import { useLogout } from '../api/auth/auth';
 
 const Header: React.FC = () => {
     const [menuOpen, setMenuOpen] = useState(false);
-
+    const isLoggedIn = useStore((state) => state.isLoggedIn)
+    const { mutate: logout } = useLogout()
+    
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
     };
-
     return (
         <header>
             <nav>
@@ -28,12 +32,19 @@ const Header: React.FC = () => {
                     <a href='/qui_sommes_nous'>Qui sommes nous?</a>
                     <a href='/concept'>Le concept</a>
                     <div className='loginsignup'>
-                        <a href='/login'>
-                            <Button variant='contained' endIcon={<MeetingRoomIcon />}>Login</Button>
-                        </a>
-                        <a href='/register'>
-                            <Button variant='contained' endIcon={<PersonAddIcon />}>Signup</Button>
-                        </a>
+                        {!isLoggedIn && <>
+                            <a href='/login'>
+                                <Button variant='contained' endIcon={<MeetingRoomIcon />}>Login</Button>
+                            </a>
+                            <a href='/register'>
+                                <Button variant='contained' endIcon={<PersonAddIcon />}>Signup</Button>
+                            </a>
+                        </>}
+                        {isLoggedIn && 
+                            <a>
+                                <Button onClick={() => logout()} variant='contained' endIcon={<LogoutIcon />}>Logout</Button>
+                            </a>
+                        }
                     </div>
                 </div>
                 <div className="menu-icon" onClick={toggleMenu}>
@@ -50,13 +61,22 @@ const Header: React.FC = () => {
                 <br></br>
                 <a href='/concept'>Le concept</a>
                 <br></br>
-                <a href='/login'>
-                    <Button variant='contained' endIcon={<MeetingRoomIcon />}>Login</Button>
-                </a>
-                <br></br>
-                <a href='/register'>
-                    <Button variant='contained' endIcon={<PersonAddIcon />}>Signup</Button>
-                </a>
+                {!isLoggedIn &&
+                <>
+                    <a href='/login'>
+                        <Button variant='contained' endIcon={<MeetingRoomIcon />}>Login</Button>
+                    </a>
+                    <br></br>
+                    <a href='/register'>
+                        <Button variant='contained' endIcon={<PersonAddIcon />}>Signup</Button>
+                    </a>                
+                </>
+                }
+                {isLoggedIn &&
+                    <a>
+                        <Button onClick={() => logout()} variant='contained' endIcon={<LogoutIcon />}>Logout</Button>
+                    </a> 
+                }
             </div>
         </header>
     );
