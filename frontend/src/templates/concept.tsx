@@ -7,18 +7,25 @@ const Concept: React.FC=()=>{
     return(
         <div>
             <Header></Header>
+            <br></br>
+            <br></br>
+            <br></br>
             <section className='concept'>
-            <h1>Concept :</h1>
-            <h3>
-                Red Alert est un gestionnaire de crise.<br></br>
-                Grâce à Red Alert, vous pouvez créer un scénario de crise ainsi que toutes les étapes pour résoudre la crise.<br></br>
+                <div className='intro_concept'>
+                <h1>Red Alert, Notre concept :</h1>
+                <h3>
+                Red Alert est un gestionnaire de crise.<br></br><br></br>
+                Grâce à Red Alert, vous pouvez créer un scénario de crise ainsi que toutes les étapes pour résoudre la crise.
+                <br></br><br></br>
                 Les membres de la communauté peuvent également réagir à vos scénarios et ajouter des étapes pour résoudre la crise si besoin.
+                <br></br><br></br>Inscrivez vous dès maintenant et créez vos scénarios!
             </h3>
-            <p> Inscrivez vous dès maintenant et créez vos scénarios!</p>
             <a href='/login'>
-            <Button variant='contained' color="error">Créer un compte</Button>
-
+            <Button variant='contained' color="error" size='large'><b>Créer un compte</b></Button>
             </a>
+            <br></br>
+            <br></br>
+                </div>
             </section>
         </div>
     )

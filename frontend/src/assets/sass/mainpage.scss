@@ -1,38 +1,34 @@
 .mainpage{
+    margin: auto;
     width: 100%;
+    height: 100vh;
+    padding: 0;
     flex-direction: row;
     display: flex;
-    justify-content: space-around;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
     .maintext{
+        background-color: rgba(255, 255, 255, 0.3);
+        border-radius: 10px;
         h1{
             color: #4E0707;
             font-family: "Inter",bold;
         }
         .title{
-            margin-left: 30px;
+           font-size: 60px;
         }
         h3{
             font-family: "Inter",medium;
+            font-size: 25px;
         }
         a{
             display: flex;
             justify-content: center;
             text-decoration: none;
-            button{
-                text-align: center;
-                background-color: #FF3131;
-                color: white;
-                border-radius: 10px;
-                border : none;
-                width: 40%;
-                height: 40px;
-                font-family: "Inter",medium;
-            }
-            button:hover{
-                cursor: pointer;
-            }
         }
     }
+    
     div{
         figure{
             text-align: right;
@@ -41,4 +37,40 @@
             }
         }
     }
+}
+.mainpage::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-image: url('../images/mainpage.png');
+    background-repeat: repeat;
+    background-position: left;
+    background-size: cover;
+    opacity: 0.6; 
+    z-index: -1;
+}
+
+@media only screen and (max-width:800px) {
+    .mainpage {
+       
+        .maintext{
+            .title{
+                font-size: 50px;
+            }
+            h3{
+                font-size: 30px;
+            }
+        }
+    }
+
+    .mainpage::before {
+        content: "";
+       
+        background-position: center;
+       
+    }
+
 }
