@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import { jsonApi } from "../../jsonApi";
-import { ArticleCreationPayload, ArticleUpdatePayload, CreateArticleResponse } from "./articles.types";
+import { ArticleCreationPayload, ArticleUpdatePayload, CreateArticleResponse, DeleteArticleResponse } from "./articles.types";
 import { useStore } from "../../../store/store";
 
 const adminArticlesEndpoint = "/api/admin/articles"
@@ -24,5 +24,16 @@ export function useUpdateArticle() {
     const accessToken = useStore((state) => state.accessToken)
     return useMutation({
         mutationFn: ({articleId, articleData}: {articleId: number, articleData: ArticleUpdatePayload}) => updateArticle(articleId, articleData, accessToken)
+    })
+}
+
+export function deleteArticle(articleId: number, bearerToken: string): Promise<DeleteArticleResponse> {
+    return jsonApi.delete({url: `${adminArticlesEndpoint}/${articleId}`, bearerToken})
+}
+
+export function useDeleteArticle() {
+    const accessToken = useStore((state) => state.accessToken)
+    return useMutation({
+        mutationFn: (articleId: number) => deleteArticle(articleId, accessToken)
     })
 }

@@ -13,3 +13,5 @@ export type CreateArticleResponse = MessageResponse & {
 }
 
 export type ArticleUpdatePayload = Partial<ArticleCreationPayload>
+
+export type DeleteArticleResponse = MessageResponse
