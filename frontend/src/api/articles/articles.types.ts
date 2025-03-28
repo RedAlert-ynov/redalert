@@ -22,3 +22,7 @@ export type Article = {
 export type ArticlesResponse = {
     data: Article[]
 }
+
+export type ArticleResponse = {
+    data: Article
+}
