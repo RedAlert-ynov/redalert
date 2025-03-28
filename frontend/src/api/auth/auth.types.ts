@@ -58,3 +58,5 @@ export type UpdateResponse = MessageResponse & {
 }
 
 export type DeleteResponse = MessageResponse
+
+export type ResetPasswordResponse = MessageResponse

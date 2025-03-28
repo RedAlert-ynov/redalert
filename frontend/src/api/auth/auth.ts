@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query"
 import { jsonApi } from "../jsonApi"
-import { DeleteResponse, LoginPayload, LoginResponse, LogoutResponse, RefreshResponse, RegisterPayload, RegisterResponse, UpdateData, UpdateResponse } from "./auth.types"
+import { DeleteResponse, LoginPayload, LoginResponse, LogoutResponse, RefreshResponse, RegisterPayload, RegisterResponse, ResetPasswordResponse, UpdateData, UpdateResponse } from "./auth.types"
 import { useStore } from "../../store/store"
 
 const authEndpoint = "/api/auth"
@@ -95,5 +95,15 @@ export function useDeleteUser() {
             setAccessToken("")
             setRefreshToken("")
         }
+    })
+}
+
+export function resetPassword(email: string): Promise<ResetPasswordResponse> {
+    return jsonApi.post({url: `${authEndpoint}/forgot-password`, content: {email}})
+}
+
+export function useResetPassword() {
+    return useMutation({
+        mutationFn: (email: string) => resetPassword(email)
     })
 }
