@@ -262,6 +262,7 @@ Permet à un utilisateur de demander une réinitialisation de son mot de passe. 
   "email": "string"
 }
 ```
+📬 Lien envoyé : https://frontend/reset?token=ENCRYPTED_TOKEN
 
 ### ⚠️ Contraintes
 
@@ -296,7 +297,7 @@ Permet de vérifier si un token de réinitialisation de mot de passe est valide.
 ##### **Body (JSON)** :
 ```json
 {
-  "value": "string"
+  "value": "ENCRYPTED_TOKEN"
 }
 ```
 
@@ -342,6 +343,7 @@ Permet de réinitialiser le mot de passe d'un utilisateur en fournissant un nouv
 ##### **Body (JSON)** :
 ```json
 {
+  "value": "ENCRYPTED_TOKEN",
   "password": "string",
   "password_confirmation": "string",
 }
