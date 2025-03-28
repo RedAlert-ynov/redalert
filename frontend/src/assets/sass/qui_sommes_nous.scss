@@ -1,12 +1,16 @@
 .quisommesnous{
+    margin: auto;
+    width: 100%;
+    height: 100vh;
+    padding: 0;
     flex-direction: column;
     display: flex;
     align-items: center;
     text-align: center;
-    width: 100%;
-    height: 100vh;
+    justify-content: center;
     h1{
         font-size: 60px;
+        color: #4E0707;
         font-family: "Inter",bold;
     }
     h3{
