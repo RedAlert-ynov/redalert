@@ -15,7 +15,7 @@ export type Article = {
     userId: number,
     title: string,
     slug: string,
-    imageUrl: string,
+    imageUrl?: string,
     sections: Section[],
     actionButtons: ActionButton[],
     createdAt: string,
