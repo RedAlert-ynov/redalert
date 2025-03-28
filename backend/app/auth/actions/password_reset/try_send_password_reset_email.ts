@@ -24,11 +24,8 @@ export default class TrySendPasswordResetEmail {
       value,
       expiresAt: DateTime.now().plus({ hour: 1 }),
     })
-    const resetLink = router
-      .builder()
-      .prefixUrl(env.get('APP_URL'))
-      .params({ value: encryptedValue })
-      .make('forgot_password.reset')
+    
+    const resetLink = `${env.get('APP_URL')}/reset?token=${encodeURIComponent(encryptedValue)}`
 
     await mail.sendLater((message) => {
       message.subject('Réinitialisez votre mot de passe').to(user.email).html(`
