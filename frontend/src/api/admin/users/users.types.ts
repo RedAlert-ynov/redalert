@@ -13,3 +13,5 @@ export type UpdateUserResponse = MessageResponse & {
 export type UpdateUserData = Partial<UpdateData & {
     role: number
 }>
+
+export type DeleteUserResponse = MessageResponse
