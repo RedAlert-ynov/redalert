@@ -6,10 +6,7 @@ import Button from '@mui/material/Button';
 const Concept: React.FC=()=>{
     return(
         <div>
-            <Header></Header>
-            <br></br>
-            <br></br>
-            <br></br>
+            <Header />
             <section className='concept'>
                 <div className='intro_concept'>
                 <h1>Red Alert, Notre concept :</h1>

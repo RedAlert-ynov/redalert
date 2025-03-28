@@ -1,48 +1,109 @@
-header{
+header {
     z-index: 99;
     width: 100%;
-    top : 0;
+    top: 0;
     left: 0;
     position: fixed;
     background-color: black;
     color: white;
     font-family: "Inter", bold;
-    nav{
+    
+    nav {
         width: 100%;
         display: flex;
         align-items: center;
-        justify-content: space-around;
-        a{
+        justify-content: space-between;
+        padding: 10px 20px;
+        figure{
+            padding: 0;
+        }
+        a {
             color: white;
             text-decoration: none;
         }
-        figure{
-            img{
-                width: 75%;
-            }
+
+        figure img {
+            width: 75%;
         }
-        .loginsignup{
+        .nav-links{
+            text-align: center;
+            display: flex;
+            justify-content: space-around;
+            flex-grow: 1;
+            align-items: center;
+        }
+        .loginsignup {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            button{
+            gap: 10px;
+
+            button {
                 background-color: #272A36;
             }
+        }
+
+        .menu-icon {
+            margin-right: 20px;
+            display: none;
+            cursor: pointer;
+            color: white;
         }
     }
 }
 
-@media only screen and (max-width:700px) {
-    header{
-        nav{
-            p{
-                display: none;
-            }
-            div{
-                p{
-                    display: block;
-                }
-            }
-        }
+
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    a{
+        color: white;
+        text-decoration: none;
+        font-size: 30px;
+    }
+    button{
+        background-color: #272A36;
+    }
+}
+
+.mobile-menu.open {
+    transform: translateX(0);
+    opacity: 1;
+    visibility: visible;
+}
+
+
+.close-icon {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+    color: white;
+    font-size: 32px;
+}
+
+
+@media only screen and (max-width: 700px) {
+    nav{
+        justify-content: space-between;
+    }
+    .nav-links {
+        display: none!important;
+    }
+
+    .menu-icon {
+        display: block !important;
+        cursor: pointer;
+        margin-right: 20px;
     }
 }
