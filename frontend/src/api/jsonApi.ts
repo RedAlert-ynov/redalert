@@ -20,6 +20,10 @@ const defaultPatchOptions = {
 const defaultPutOptions = {
     method: 'PUT',
 };
+
+const defaultDeleteOptions = {
+    method: 'DELETE',
+};
   
 async function fetchJson({ url, options, content }: { url: string; options?: object; content?: object }) {
     const body = JSON.stringify(content);
@@ -45,6 +49,10 @@ export const jsonApi = {
 
     put: ({url, content, options, bearerToken}: {url: string, content: object, options?: object, bearerToken?: string}) => {
         return fetchJson({ url, options: { ...buildHeaders(bearerToken), ...defaultPutOptions, ...options }, content });
+    },
+
+    delete: ({url, content, options, bearerToken}: {url: string, content?: object, options?: object, bearerToken?: string}) => {
+        return fetchJson({ url, options: { ...buildHeaders(bearerToken), ...defaultDeleteOptions, ...options }, content });
     }
 };
   

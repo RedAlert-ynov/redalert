@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query"
 import { jsonApi } from "../jsonApi"
-import { LoginPayload, LoginResponse, LogoutResponse, RefreshResponse, RegisterPayload, RegisterResponse, UpdateData, UpdateResponse } from "./auth.types"
+import { DeleteResponse, LoginPayload, LoginResponse, LogoutResponse, RefreshResponse, RegisterPayload, RegisterResponse, UpdateData, UpdateResponse } from "./auth.types"
 import { useStore } from "../../store/store"
 
 const authEndpoint = "/api/auth"
@@ -76,5 +76,24 @@ export function useUpdateUser() {
     const accessToken = useStore((state) => state.accessToken)
     return useMutation({
         mutationFn: (userData: UpdateData) => update({bearerToken: accessToken, userData})
+    })
+}
+
+export function deleteUser(bearerToken: string): Promise<DeleteResponse> {
+    return jsonApi.delete({url: `${authEndpoint}/delete`, bearerToken})
+}
+
+export function useDeleteUser() {
+    const accessToken = useStore((state) => state.accessToken)
+    const setLoggedIn = useStore((state) => state.setLoggedIn)
+    const setAccessToken = useStore((state) => state.setAccessToken)
+    const setRefreshToken = useStore((state) => state.setRefreshToken)
+    return useMutation({
+        mutationFn: () => deleteUser(accessToken),
+        onSuccess() {
+            setLoggedIn(false)
+            setAccessToken("")
+            setRefreshToken("")
+        }
     })
 }

@@ -13,8 +13,11 @@ export type User = {
     id: number,
 }
 
-export type RegisterResponse = {
-    message: string,
+type MessageResponse = {
+    message: string
+}
+
+export type RegisterResponse = MessageResponse & {
     user: User,
 }
 
@@ -23,20 +26,16 @@ export type LoginPayload = {
     password: string;
 }
 
-export type LoginResponse = {
-    message: string;
+export type LoginResponse = MessageResponse & {
     token: {
         accessToken: string;
         refreshToken: string;
     }
 }
 
-export type LogoutResponse = {
-    message: string;
-}
+export type LogoutResponse = MessageResponse
 
-export type RefreshResponse = {
-    message: string;
+export type RefreshResponse = MessageResponse & {
     accessToken: string;
 }
 
@@ -47,8 +46,7 @@ export type UpdateData = Partial<{
     password_confirmation: string
 }>
 
-export type UpdateResponse = {
-    message: string,
+export type UpdateResponse = MessageResponse & {
     user: {
         id: number,
         username: string,
@@ -58,3 +56,5 @@ export type UpdateResponse = {
         updatedAt: string,
     }
 }
+
+export type DeleteResponse = MessageResponse
