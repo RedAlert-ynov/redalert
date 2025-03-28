@@ -1,6 +1,7 @@
 header {
     z-index: 99;
     width: 100%;
+    flex-shrink: 0;
     top: 0;
     left: 0;
     position: fixed;

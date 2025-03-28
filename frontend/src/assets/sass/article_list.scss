@@ -1,0 +1,106 @@
+.article_list {
+    margin: 0;
+    width: 100%;
+    height: 100vh;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+
+    .all_articles {
+        width: 90%;
+        max-width: 1200px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        padding-top: 80px;
+        box-sizing: border-box;
+
+        .article-headers {
+            position: sticky;
+            top: 80px; // Same as padding-top
+            z-index: 2;
+            background-color: rgba(255, 255, 255, 0.3);
+            padding: 20px 0;
+            margin-bottom: 20px;
+            
+            h1 {
+                font-size: 60px;
+                color: #4E0707;
+                font-family: "Inter", bold;
+                margin: 0;
+            }
+            
+            h3 {
+                font-size: 30px;
+                font-family: "Inter", medium;
+                margin: 10px 0 0 0;
+            }
+        }
+
+        .articles-container {
+            overflow-y: auto;
+            flex-grow: 1;
+            padding-bottom: 40px;
+
+            ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                
+                li {
+                    display: flex;
+                    justify-content: space-around;
+                    align-items: center;
+                    padding: 15px;
+                    margin-bottom: 10px;
+                    background-color: rgba(255, 255, 255,1);
+                    border-radius: 8px;
+                    
+                    p {
+                        font-size: 24px;
+                        font-family: "Inter", medium;
+                        margin: 0;
+                    }
+                }
+            }
+        }
+    }
+}
+.article_list::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-image: url('../images/mainpage.png');
+    background-repeat: repeat;
+    background-position: left;
+    background-size: cover;
+    opacity: 0.6; 
+    z-index: -1;
+}
+
+@media only screen and (max-width:800px) {
+    .article_list {
+        .all_articles{
+            h1{
+                font-size: 50px;
+            }
+            h3{
+                font-size: 25px;
+            }
+        }
+    }
+    .article_list::before {
+        content: "";
+        background-position: center;
+    }
+
+}
+
+// Keep your existing ::before and media queries

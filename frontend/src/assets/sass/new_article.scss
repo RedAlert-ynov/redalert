@@ -1,14 +1,20 @@
-.concept{
-    margin: auto;
+.new_article{
+    margin: 0;
     width: 100%;
     height: 100vh;
     padding: 0;
-    flex-direction: column;
     display: flex;
+    flex-direction: column;
     align-items: center;
     text-align: center;
-    justify-content: center;
-    .intro_concept{
+    form{
+        overflow-y: auto;
+        flex-grow: 1;
+        padding-top: 80px;
+        flex-direction: column;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
         background-color: rgba(255, 255, 255, 0.3);
         border-radius: 10px;
         h1{
@@ -22,7 +28,8 @@
         }
     }
 }
-.concept::before{
+
+.new_article::before{
     content: "";
     position: absolute;
     top: 0;
@@ -38,22 +45,17 @@
 }
 
 @media only screen and (max-width:800px) {
-    .concept {
-        .intro_concept{
+    .new_article {
+        .form{
             h1{
                 font-size: 50px;
             }
-            h3{
-                font-size: 25px;
-            }
+            
         }
     }
-
-    .concept::before {
+    .new_article::before {
         content: "";
-       
         background-position: center;
-       
     }
 
 }
