@@ -1,3 +1,5 @@
+import { MessageResponse } from "../common.types"
+
 export type RegisterPayload = {
     username: string,
     email: string,
@@ -12,10 +14,6 @@ export type User = {
     role: number,
     createdAt: string,
     updatedAt: string,
-}
-
-type MessageResponse = {
-    message: string
 }
 
 export type RegisterResponse = MessageResponse & {

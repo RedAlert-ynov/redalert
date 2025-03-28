@@ -1,19 +1,23 @@
 import { User } from "../auth/auth.types"
 
+export type Section = {
+    title: string,
+    body: string,
+}
+
+export type ActionButton = {
+    title: string,
+    link: string,
+}
+
 export type Article = {
     id: number,
     userId: number,
     title: string,
     slug: string,
     imageUrl: string,
-    sections: {
-        title: string,
-        body: string,
-    }[],
-    actionButtons: {
-        title: string,
-        link: string,
-    }[],
+    sections: Section[],
+    actionButtons: ActionButton[],
     createdAt: string,
     updatedAt: string,
     user: User
