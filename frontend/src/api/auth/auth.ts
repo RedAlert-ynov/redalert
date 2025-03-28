@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query"
 import { jsonApi } from "../jsonApi"
-import { LoginPayload, LoginResponse, LogoutResponse, RegisterPayload, RegisterResponse } from "./auth.types"
+import { LoginPayload, LoginResponse, LogoutResponse, RefreshResponse, RegisterPayload, RegisterResponse } from "./auth.types"
 import { useStore } from "../../store/store"
 
 const authEndpoint = "/api/auth"
@@ -49,5 +49,21 @@ export function useLogout() {
             setAccessToken("")
             setRefreshToken("")
         }
+    })
+}
+
+export function refresh({bearerToken, refreshToken}: {bearerToken: string, refreshToken: string}): Promise<RefreshResponse> {
+    return jsonApi.post({url: `${authEndpoint}/refresh`, bearerToken, content: {refreshToken}})
+}
+
+export function useRefreshToken() {
+    const accessToken = useStore((state) => state.accessToken)
+    const refreshToken = useStore((state) => state.refreshToken)
+    const setAccessToken = useStore((state) => state.setAccessToken)
+    return useMutation({
+        mutationFn: () => refresh({bearerToken: accessToken, refreshToken}),
+        onSuccess(data) {
+            setAccessToken(data.accessToken)
+        },
     })
 }

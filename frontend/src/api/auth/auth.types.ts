@@ -34,3 +34,8 @@ export type LoginResponse = {
 export type LogoutResponse = {
     message: string;
 }
+
+export type RefreshResponse = {
+    message: string;
+    accessToken: string;
+}
