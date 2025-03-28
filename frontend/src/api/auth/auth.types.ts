@@ -6,11 +6,12 @@ export type RegisterPayload = {
 }
 
 export type User = {
+    id: number,
     username: string,
     email: string,
+    role: number,
     createdAt: string,
     updatedAt: string,
-    id: number,
 }
 
 type MessageResponse = {
@@ -47,14 +48,7 @@ export type UpdateData = Partial<{
 }>
 
 export type UpdateResponse = MessageResponse & {
-    user: {
-        id: number,
-        username: string,
-        email: string,
-        role: number,
-        createdAt: string,
-        updatedAt: string,
-    }
+    user: User
 }
 
 export type DeleteResponse = MessageResponse
