@@ -16,6 +16,10 @@ const defaultPostOptions = {
 const defaultPatchOptions = {
     method: 'PATCH',
 };
+
+const defaultPutOptions = {
+    method: 'PUT',
+};
   
 async function fetchJson({ url, options, content }: { url: string; options?: object; content?: object }) {
     const body = JSON.stringify(content);
@@ -38,5 +42,9 @@ export const jsonApi = {
     patch: ({url, content, options, bearerToken}: {url: string, content: object, options?: object, bearerToken?: string}) => {
         return fetchJson({ url, options: { ...buildHeaders(bearerToken), ...defaultPatchOptions, ...options }, content });
     },
+
+    put: ({url, content, options, bearerToken}: {url: string, content: object, options?: object, bearerToken?: string}) => {
+        return fetchJson({ url, options: { ...buildHeaders(bearerToken), ...defaultPutOptions, ...options }, content });
+    }
 };
   

@@ -39,3 +39,22 @@ export type RefreshResponse = {
     message: string;
     accessToken: string;
 }
+
+export type UpdateData = Partial<{
+    username: string,
+    email: string,
+    password: string,
+    password_confirmation: string
+}>
+
+export type UpdateResponse = {
+    message: string,
+    user: {
+        id: number,
+        username: string,
+        email: string,
+        role: number,
+        createdAt: string,
+        updatedAt: string,
+    }
+}

@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query"
 import { jsonApi } from "../jsonApi"
-import { LoginPayload, LoginResponse, LogoutResponse, RefreshResponse, RegisterPayload, RegisterResponse } from "./auth.types"
+import { LoginPayload, LoginResponse, LogoutResponse, RefreshResponse, RegisterPayload, RegisterResponse, UpdateData, UpdateResponse } from "./auth.types"
 import { useStore } from "../../store/store"
 
 const authEndpoint = "/api/auth"
@@ -65,5 +65,16 @@ export function useRefreshToken() {
         onSuccess(data) {
             setAccessToken(data.accessToken)
         },
+    })
+}
+
+export function update({bearerToken, userData}: {bearerToken: string, userData: UpdateData}): Promise<UpdateResponse> {
+    return jsonApi.put({url: `${authEndpoint}/update`, bearerToken, content: userData})
+}
+
+export function useUpdateUser() {
+    const accessToken = useStore((state) => state.accessToken)
+    return useMutation({
+        mutationFn: (userData: UpdateData) => update({bearerToken: accessToken, userData})
     })
 }
