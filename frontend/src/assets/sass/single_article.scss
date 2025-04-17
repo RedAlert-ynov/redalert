@@ -8,6 +8,7 @@
     align-items: center;
     text-align: center;
     .article_content{
+        overflow-wrap: anywhere;
         overflow-y: auto;
         overflow-x:hidden;
         flex-grow: 1;
