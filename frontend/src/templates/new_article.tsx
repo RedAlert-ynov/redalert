@@ -5,27 +5,35 @@ import Button from '@mui/material/Button';
 import { TextField } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { useCreateArticle } from '../api/admin/articles/articles';
 
 
 
 interface Chapter {
   id: number;
   title: string;
-  content: string;
+  body: string;
+}
+
+const shouldBeSubmittable = (articleTitle: string, chapters: Chapter[]) => {
+  const isArticleTitleLongEnough = articleTitle.length > 2
+  const areChaptersTitlesLongEnough = chapters.every((chapter) => chapter.title.length > 0)
+  const areChaptersBodiesLongEnough = chapters.every((chapter) => chapter.body.length > 9)
+  return !(isArticleTitleLongEnough && chapters.length > 0 && areChaptersTitlesLongEnough && areChaptersBodiesLongEnough)
 }
 
 const NewArticle: React.FC = () => {
   const [chapters, setChapters] = useState<Chapter[]>([]);
   const [articleTitle, setArticleTitle] = useState('');
+  const [imageUrl, setImageUrl] = useState('')
+
+  const {mutate: createArticle} = useCreateArticle()
   
-
- 
-
   const createChapter = () => {
     const newChapter: Chapter = {
       id: Date.now(), // Using timestamp as unique ID
       title: '',
-      content: ''
+      body: ''
     };
     setChapters([...chapters, newChapter]);
   };
@@ -44,9 +52,11 @@ const NewArticle: React.FC = () => {
     e.preventDefault();
     const articleData = {
       title: articleTitle,
-      chapters,
+      imageUrl: imageUrl,
+      sections: chapters.map((chapter) => ({title: chapter.title, body: chapter.body})),
     };
     console.log('Submitting:', articleData);
+    createArticle(articleData)
   };
 
   return (
@@ -68,9 +78,14 @@ const NewArticle: React.FC = () => {
             onChange={(e) => setArticleTitle(e.target.value)}
           />
           
-          <TextField label="lien photo" required  size='small' 
+          <TextField
+            label="lien photo" 
+            size='small' 
             margin="dense"
-            fullWidth />
+            fullWidth
+            value={imageUrl}
+            onChange={(e) => setImageUrl(e.target.value)}
+          />
           <br></br>
           <Button 
             variant='contained' 
@@ -123,8 +138,8 @@ const NewArticle: React.FC = () => {
                   multiline
                   rows={4}
                   fullWidth
-                  value={chapter.content}
-                  onChange={(e) => updateChapter(chapter.id, 'content', e.target.value)}
+                  value={chapter.body}
+                  onChange={(e) => updateChapter(chapter.id, 'body', e.target.value)}
                 />
               </div>
             ))}
@@ -137,6 +152,7 @@ const NewArticle: React.FC = () => {
             size='large'
             fullWidth
             sx={{ mt: 2 }}
+            disabled={shouldBeSubmittable(articleTitle, chapters)}
           >
             Submit
           </Button>
