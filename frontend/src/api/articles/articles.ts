@@ -16,14 +16,14 @@ export function useArticles() {
     })
 }
 
-export function getArticle(id: number): Promise<ArticleResponse> {
-    return jsonApi.get({url: `${articlesEndpoint}/${id}`})
+export function getArticle(slug: string): Promise<ArticleResponse> {
+    return jsonApi.get({url: `${articlesEndpoint}/${slug}`})
 }
 
-export function useArticle(articleId: number) {
+export function useArticle(articleSlug: string) {
     return useQuery({
-        queryKey: ['articles', articleId],
-        queryFn: () => getArticle(articleId),
+        queryKey: ['articles', articleSlug],
+        queryFn: () => getArticle(articleSlug),
         select: (response) => response.data
     })
 }

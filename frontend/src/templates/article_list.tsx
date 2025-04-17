@@ -19,7 +19,7 @@ const ArticleList:React.FC=()=>{
                     </div>
                     <div className="articles-container">
                         {articles?.map((article) => (
-                            <ArticleListItem key={article.id} id={article.id} title={article.title} />
+                            <ArticleListItem key={article.id} slug={article.slug} title={article.title} />
                         ))}
                     </div>
                 </div>
@@ -30,12 +30,12 @@ const ArticleList:React.FC=()=>{
 
 export default ArticleList
 
-const ArticleListItem = (props: {id: number, title: string}) => {
+const ArticleListItem = (props: {slug: string, title: string}) => {
     return (
         <ul>
             <li>
                 <p>{props.title}</p>
-                <a href={`article/${props.id}`}>
+                <a href={`article/${props.slug}`}>
                     <Button variant='contained' color="error">
                         <b>Consulter</b>
                     </Button>

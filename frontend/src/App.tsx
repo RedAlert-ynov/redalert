@@ -28,7 +28,7 @@ const App: React.FC = () => {
                 <Route path="qui_sommes_nous" element={<Quisommesnous/>}/>
                 <Route path="/article_list" element={<ArticleList/>}/>
                 <Route path="/new_article"element={<NewArticle/>}/>
-                <Route path="/article" element={<SingleArticle/>}/>
+                <Route path="/article/:slug" element={<SingleArticle/>}/>
                 <Route path="/dashboard" element={<Dashboard/>}/>
                 <Route path="*" element={<Error404 />} />
             </Routes>
