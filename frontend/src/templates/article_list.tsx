@@ -2,8 +2,12 @@ import 'react'
 import Header from './header';
 import '../assets/sass/article_list.scss'
 import Button from '@mui/material/Button';
+import { useArticles } from '../api/articles/articles';
 
 const ArticleList:React.FC=()=>{
+    const articlesQuery = useArticles()
+    const articles = articlesQuery.data
+
     return(
         <div>
             <Header/>
@@ -14,17 +18,8 @@ const ArticleList:React.FC=()=>{
                         <h3>Voici la liste de tous les scénarios disponibles :</h3>
                     </div>
                     <div className="articles-container">
-                        {[...Array(20)].map((_, i) => (
-                            <ul key={i}>
-                                <li>
-                                    <p>Scénario {i+1}</p>
-                                    <a href={`scenario/id${i+1}`}>
-                                        <Button variant='contained' color="error">
-                                            <b>Consulter</b>
-                                        </Button>
-                                    </a>
-                                </li>
-                            </ul>
+                        {articles?.map((article) => (
+                            <ArticleListItem key={article.id} id={article.id} title={article.title} />
                         ))}
                     </div>
                 </div>
@@ -35,3 +30,18 @@ const ArticleList:React.FC=()=>{
 }
 
 export default ArticleList
+
+const ArticleListItem = (props: {id: number, title: string}) => {
+    return (
+        <ul>
+            <li>
+                <p>{props.title}</p>
+                <a href={`article/${props.id}`}>
+                    <Button variant='contained' color="error">
+                        <b>Consulter</b>
+                    </Button>
+                </a>
+            </li>
+        </ul>
+    )
+}
