@@ -17,7 +17,7 @@ const Concept: React.FC=()=>{
                 Les membres de la communauté peuvent également réagir à vos scénarios et ajouter des étapes pour résoudre la crise si besoin.
                 <br></br><br></br>Inscrivez vous dès maintenant et créez vos scénarios!
             </h3>
-            <a href='/login'>
+            <a href='/register'>
             <Button variant='contained' color="error" size='large'><b>Créer un compte</b></Button>
             </a>
             <br></br>
