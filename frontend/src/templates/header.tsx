@@ -8,6 +8,7 @@ import Button from '@mui/material/Button';
 import ListIcon from '@mui/icons-material/List';
 import CloseIcon from '@mui/icons-material/Close';
 import LogoutIcon from '@mui/icons-material/Logout';
+import PostAddIcon from '@mui/icons-material/PostAdd';
 import { useStore } from '../store/store';
 import { useLogout } from '../api/auth/auth';
 
@@ -31,6 +32,7 @@ const Header: React.FC = () => {
                     <a href='/'>Accueil</a>
                     <a href='/qui_sommes_nous'>Qui sommes nous?</a>
                     <a href='/concept'>Le concept</a>
+                    <a href='/article_list'>Les articles</a>
                     <div className='loginsignup'>
                         {!isLoggedIn && <>
                             <a href='/login'>
@@ -40,10 +42,15 @@ const Header: React.FC = () => {
                                 <Button variant='contained' endIcon={<PersonAddIcon />}>Signup</Button>
                             </a>
                         </>}
-                        {isLoggedIn && 
-                            <a>
-                                <Button onClick={() => logout()} variant='contained' endIcon={<LogoutIcon />}>Logout</Button>
-                            </a>
+                        {isLoggedIn &&
+                            <>
+                                <a href='/new_article'>
+                                    <Button variant='contained' endIcon={<PostAddIcon />}>Add article</Button>
+                                </a>
+                                <a>
+                                    <Button onClick={() => logout()} variant='contained' endIcon={<LogoutIcon />}>Logout</Button>
+                                </a>
+                            </>
                         }
                     </div>
                 </div>
@@ -61,6 +68,8 @@ const Header: React.FC = () => {
                 <br></br>
                 <a href='/concept'>Le concept</a>
                 <br></br>
+                <a href='/article_list'>Les articles</a>
+                <br></br>
                 {!isLoggedIn &&
                 <>
                     <a href='/login'>
@@ -73,9 +82,15 @@ const Header: React.FC = () => {
                 </>
                 }
                 {isLoggedIn &&
+                <>
+                    <a href='/new_article'>
+                        <Button variant='contained' endIcon={<PostAddIcon />}>Add article</Button>
+                    </a>
+                    <br></br>
                     <a>
                         <Button onClick={() => logout()} variant='contained' endIcon={<LogoutIcon />}>Logout</Button>
                     </a> 
+                </>  
                 }
             </div>
         </header>

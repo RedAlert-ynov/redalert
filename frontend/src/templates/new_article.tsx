@@ -28,7 +28,7 @@ const NewArticle: React.FC = () => {
   const [chapters, setChapters] = useState<Chapter[]>([]);
   const [articleTitle, setArticleTitle] = useState('');
   const [imageUrl, setImageUrl] = useState('')
-  const {mutate: createArticle} = useCreateArticle()
+  const createArticle = useCreateArticle()
   const isUserLoggedIn = useStore((state) => state.isLoggedIn)
 
   if (!isUserLoggedIn) {
@@ -62,8 +62,12 @@ const NewArticle: React.FC = () => {
       sections: chapters.map((chapter) => ({title: chapter.title, body: chapter.body})),
     };
     console.log('Submitting:', articleData);
-    createArticle(articleData)
+    createArticle.mutate(articleData)
   };
+
+  if (createArticle.isSuccess) {
+    return <Navigate to={`/article/${createArticle.data.data.slug}`} />
+  }
 
   return (
     <div>

@@ -22,7 +22,7 @@ export const useStore = create<Store>()(
     }),
     {
       name: 'redalert-storage',
-      storage: createJSONStorage(() => sessionStorage),
+      storage: createJSONStorage(() => localStorage),
     },
   ),
 )

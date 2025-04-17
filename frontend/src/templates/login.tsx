@@ -5,20 +5,27 @@ import Button from '@mui/material/Button';
 import Header from './header';
 import { useState } from 'react';
 import { useLogin } from '../api/auth/auth';
+import { Navigate } from 'react-router-dom';
 
 
 const Login:React.FC=()=>{
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
-    const { mutate: login } = useLogin()
+    const login = useLogin()
 
     const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
-        login({
-            email,
-            password,
-        })
+        login.mutate(
+            {
+                email,
+                password,
+            }
+        )
+    }
+
+    if (login.isSuccess) {
+        return <Navigate replace to="/article_list" />
     }
 
     return(

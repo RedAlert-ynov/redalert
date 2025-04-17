@@ -9,7 +9,7 @@ export type ArticleCreationPayload = {
 }
 
 export type CreateArticleResponse = MessageResponse & {
-    article: Omit<Article, "userId" | "user">
+    data: Omit<Article, "userId" | "user">
 }
 
 export type ArticleUpdatePayload = Partial<ArticleCreationPayload>
