@@ -6,6 +6,8 @@ import { TextField } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useCreateArticle } from '../api/admin/articles/articles';
+import { useStore } from '../store/store';
+import { Navigate } from 'react-router-dom';
 
 
 
@@ -26,8 +28,12 @@ const NewArticle: React.FC = () => {
   const [chapters, setChapters] = useState<Chapter[]>([]);
   const [articleTitle, setArticleTitle] = useState('');
   const [imageUrl, setImageUrl] = useState('')
-
   const {mutate: createArticle} = useCreateArticle()
+  const isUserLoggedIn = useStore((state) => state.isLoggedIn)
+
+  if (!isUserLoggedIn) {
+    return (<Navigate replace to="/login" />)
+  }
   
   const createChapter = () => {
     const newChapter: Chapter = {
