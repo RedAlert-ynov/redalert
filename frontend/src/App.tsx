@@ -16,6 +16,7 @@ import ArticleList from "./templates/article_list";
 import NewArticle from "./templates/new_article";
 import SingleArticle from "./templates/single_article";
 import Dashboard from "./templates/dashboard";
+import AdminDashboard from "./templates/admin_dashboard";
 const App: React.FC = () => {
   return (
     <QueryClientProvider client={queryClient}>
@@ -30,6 +31,7 @@ const App: React.FC = () => {
                 <Route path="/new_article"element={<NewArticle/>}/>
                 <Route path="/article/:slug" element={<SingleArticle/>}/>
                 <Route path="/dashboard" element={<Dashboard/>}/>
+                <Route path="/admin_dashboard" element={<AdminDashboard />} />
                 <Route path="*" element={<Error404 />} />
             </Routes>
         </Router>

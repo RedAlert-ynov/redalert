@@ -2,6 +2,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { jsonApi } from "../../jsonApi";
 import { DeleteUserResponse, UpdateUserData, UpdateUserResponse, UsersResponse } from "./users.types";
 import { useStore } from "../../../store/store";
+import { queryClient } from "../../client";
 
 const adminUsersEndpoint = "/api/admin/users"
 
@@ -36,6 +37,9 @@ export function deleteUser(userId: number, bearerToken: string): Promise<DeleteU
 export function useDeleteUser() {
     const accessToken = useStore((state) => state.accessToken)
     return useMutation({
-        mutationFn: (userId: number) => deleteUser(userId, accessToken)
+        mutationFn: (userId: number) => deleteUser(userId, accessToken),
+        onSuccess: () => {
+            queryClient.invalidateQueries({queryKey: ["admin", "users"]})
+        }
     })
 }
