@@ -3,10 +3,17 @@ import Header from './header';
 import '../assets/sass/article_list.scss'
 import Button from '@mui/material/Button';
 import { useArticles } from '../api/articles/articles';
+import { useStore } from '../store/store';
+import { Navigate } from 'react-router-dom';
 
 const ArticleList:React.FC=()=>{
     const articlesQuery = useArticles()
     const articles = articlesQuery.data
+    const isLoggedIn = useStore((state) => state.isLoggedIn)
+
+    if (!isLoggedIn) {
+        return <Navigate replace to="/login" />
+    }
 
     return(
         <div>

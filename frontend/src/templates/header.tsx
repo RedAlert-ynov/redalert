@@ -34,7 +34,9 @@ const Header: React.FC = () => {
                     <a href='/'>Accueil</a>
                     <a href='/qui_sommes_nous'>Qui sommes nous?</a>
                     <a href='/concept'>Le concept</a>
-                    <a href='/article_list'>Les articles</a>
+                    {isLoggedIn &&
+                        <a href='/article_list'>Les articles</a>
+                    }
                     {isAdmin && 
                         <a href='/admin_dashboard'>Dashboard admin</a>
                     }
@@ -75,8 +77,12 @@ const Header: React.FC = () => {
                 <br></br>
                 <a href='/concept'>Le concept</a>
                 <br></br>
-                <a href='/article_list'>Les articles</a>
-                <br></br>
+                {isLoggedIn && 
+                <>
+                    <a href='/article_list'>Les articles</a>
+                    <br></br>                
+                </>
+                }
                 {isAdmin && 
                     <>
                         <a href='/admin_dashboard'>Dashboard admin</a>

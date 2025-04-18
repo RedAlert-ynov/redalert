@@ -2,12 +2,18 @@ import 'react'
 import Header from './header';
 import '../assets/sass/single_article.scss'
 import Button from '@mui/material/Button';
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import { useArticle } from '../api/articles/articles';
+import { useStore } from '../store/store';
 
 const SingleArticle:React.FC=()=>{
     const { slug = '' } = useParams()
     const articleQuery = useArticle(slug)
+    const isLoggedIn = useStore((state) => state.isLoggedIn)
+
+    if (!isLoggedIn) {
+        return <Navigate replace to="/login" />
+    }
     
     return(
         <div>
