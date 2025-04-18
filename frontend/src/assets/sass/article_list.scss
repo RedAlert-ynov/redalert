@@ -11,6 +11,7 @@
     overflow: hidden;
 
     .all_articles {
+        overflow-y: auto;
         width: 90%;
         max-width: 1200px;
         height: 100%;
@@ -20,7 +21,6 @@
         box-sizing: border-box;
 
         .article-headers {
-            position: sticky;
             top: 80px; // Same as padding-top
             z-index: 2;
             background-color: rgba(255, 255, 255, 0.3);
@@ -42,7 +42,6 @@
         }
 
         .articles-container {
-            overflow-y: auto;
             flex-grow: 1;
             padding-bottom: 40px;
 

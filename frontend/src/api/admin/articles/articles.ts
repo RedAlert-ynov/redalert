@@ -2,6 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import { jsonApi } from "../../jsonApi";
 import { ArticleCreationPayload, ArticleUpdatePayload, CreateArticleResponse, DeleteArticleResponse } from "./articles.types";
 import { useStore } from "../../../store/store";
+import { queryClient } from "../../client";
 
 const adminArticlesEndpoint = "/api/admin/articles"
 
@@ -34,6 +35,9 @@ export function deleteArticle(articleId: number, bearerToken: string): Promise<D
 export function useDeleteArticle() {
     const accessToken = useStore((state) => state.accessToken)
     return useMutation({
-        mutationFn: (articleId: number) => deleteArticle(articleId, accessToken)
+        mutationFn: (articleId: number) => deleteArticle(articleId, accessToken),
+        onSuccess: () => {
+            queryClient.invalidateQueries({queryKey: ["articles"]})
+        }
     })
 }
