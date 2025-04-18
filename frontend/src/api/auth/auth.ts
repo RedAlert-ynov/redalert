@@ -23,12 +23,18 @@ export function useLogin() {
     const setLoggedIn = useStore((state) => state.setLoggedIn)
     const setAccessToken = useStore((state) => state.setAccessToken)
     const setRefreshToken = useStore((state) => state.setRefreshToken)
+    const setUsername = useStore((state) => state.setUsername)
+    const setEmail = useStore((state) => state.setEmail)
+    const setRole = useStore((state) => state.setRole)
     return useMutation({
         mutationFn: (payload: LoginPayload) => login(payload),
         onSuccess(data) {
             setLoggedIn(true)
             setAccessToken(data.token.accessToken)
             setRefreshToken(data.token.refreshToken)
+            setUsername(data.token.user.username)
+            setEmail(data.token.user.email)
+            setRole(data.token.user.role)
         },
     })
 }
@@ -42,12 +48,18 @@ export function useLogout() {
     const setLoggedIn = useStore((state) => state.setLoggedIn)
     const setAccessToken = useStore((state) => state.setAccessToken)
     const setRefreshToken = useStore((state) => state.setRefreshToken)
+    const setUsername = useStore((state) => state.setUsername)
+    const setEmail = useStore((state) => state.setEmail)
+    const setRole = useStore((state) => state.setRole)
     return useMutation({
         mutationFn: () => logout(accessToken),
         onSuccess() {
             setLoggedIn(false)
             setAccessToken("")
             setRefreshToken("")
+            setUsername("")
+            setEmail("")
+            setRole(NaN)
         }
     })
 }

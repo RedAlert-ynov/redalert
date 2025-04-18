@@ -29,6 +29,7 @@ export type LoginResponse = MessageResponse & {
     token: {
         accessToken: string;
         refreshToken: string;
+        user: User
     }
 }
 
