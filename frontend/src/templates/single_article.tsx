@@ -2,25 +2,12 @@ import 'react'
 import Header from './header';
 import '../assets/sass/single_article.scss'
 import Button from '@mui/material/Button';
-import { Navigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useArticle } from '../api/articles/articles';
-import { useStore } from '../store/store';
-import { ADMIN_ROLE } from '../common';
-import { useDeleteArticle } from '../api/admin/articles/articles';
 
 const SingleArticle:React.FC=()=>{
     const { slug = '' } = useParams()
     const articleQuery = useArticle(slug)
-    const isAdmin = useStore((state) => state.role) === ADMIN_ROLE
-    const deleteArticle = useDeleteArticle()
-
-    const handleDeleteArticle = (id: number) => {
-        deleteArticle.mutate(id)
-    }
-
-    if (deleteArticle.isSuccess) {
-        return <Navigate replace to="/article_list" />
-    }
     
     return(
         <div>
@@ -45,11 +32,6 @@ const SingleArticle:React.FC=()=>{
                         <a href='/article_list'>
                             <Button variant='contained' size='large' color='error'>Revenir à la liste</Button>
                         </a>
-                        {isAdmin &&
-                            <a>
-                                <Button variant='contained' size='large' color='error' onClick={() => handleDeleteArticle(articleQuery.data.id)}>Supprimer</Button>
-                            </a>                    
-                        }
                     </>
                     }
                     

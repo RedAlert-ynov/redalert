@@ -18,6 +18,7 @@ import SingleArticle from "./templates/single_article";
 import Dashboard from "./templates/dashboard";
 import AdminDashboard from "./templates/admin_dashboard";
 import AdminUserEdition from "./templates/admin_user_edition";
+import AdminArticleEdition from "./templates/admin_article_edition";
 const App: React.FC = () => {
   return (
     <QueryClientProvider client={queryClient}>
@@ -34,6 +35,7 @@ const App: React.FC = () => {
                 <Route path="/dashboard" element={<Dashboard/>}/>
                 <Route path="/admin_dashboard" element={<AdminDashboard />} />
                 <Route path="/admin_dashboard/users/:id" element={<AdminUserEdition />} />
+                <Route path="/admin_dashboard/articles/:slug" element={<AdminArticleEdition />} />
                 <Route path="*" element={<Error404 />} />
             </Routes>
         </Router>

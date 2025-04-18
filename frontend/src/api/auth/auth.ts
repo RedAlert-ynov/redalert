@@ -53,7 +53,7 @@ export function useLogout() {
     const setRole = useStore((state) => state.setRole)
     return useMutation({
         mutationFn: () => logout(accessToken),
-        onSuccess() {
+        onSettled() {
             setLoggedIn(false)
             setAccessToken("")
             setRefreshToken("")
