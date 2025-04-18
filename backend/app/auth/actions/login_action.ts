@@ -20,5 +20,6 @@ export const loginAction = async (email: string, password: string) => {
   return {
     accessToken: accessToken.value!.release(),
     refreshToken: refreshTokenValue,
+    user,
   }
 }
