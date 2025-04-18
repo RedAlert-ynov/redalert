@@ -4,10 +4,18 @@ import '../assets/sass/article_list.scss'
 import Button from '@mui/material/Button';
 import { useDeleteUser, useUsers } from '../api/admin/users/users';
 import { User } from '../api/auth/auth.types';
+import { useStore } from '../store/store';
+import { ADMIN_ROLE } from '../common';
+import Unauthorized from './unauthorized';
 
 const AdminDashboard:React.FC=()=>{
     const usersQuery = useUsers()
     const users = usersQuery.data
+    const isAdmin = useStore((state) => state.role) === ADMIN_ROLE
+
+    if (!isAdmin) {
+        return <Unauthorized />
+    }
 
     return(
         <div>

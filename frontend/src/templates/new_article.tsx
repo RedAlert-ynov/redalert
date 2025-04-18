@@ -8,8 +8,8 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { useCreateArticle } from '../api/admin/articles/articles';
 import { useStore } from '../store/store';
 import { Navigate } from 'react-router-dom';
-
-
+import { ADMIN_ROLE } from '../common';
+import Unauthorized from './unauthorized';
 
 interface Chapter {
   id: number;
@@ -30,9 +30,14 @@ const NewArticle: React.FC = () => {
   const [imageUrl, setImageUrl] = useState('')
   const createArticle = useCreateArticle()
   const isUserLoggedIn = useStore((state) => state.isLoggedIn)
+  const isAdmin = useStore((state) => state.role) === ADMIN_ROLE
 
   if (!isUserLoggedIn) {
     return (<Navigate replace to="/login" />)
+  }
+
+  if (!isAdmin) {
+    return <Unauthorized />
   }
   
   const createChapter = () => {

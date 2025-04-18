@@ -6,6 +6,9 @@ import { useUpdateUser, useUser } from '../api/admin/users/users';
 import Error404 from './404';
 import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import { useEffect, useState } from 'react';
+import { useStore } from '../store/store';
+import { ADMIN_ROLE } from '../common';
+import Unauthorized from './unauthorized';
 
 const AdminUserEdition:React.FC=()=>{
     const { id = "" } = useParams()
@@ -16,6 +19,7 @@ const AdminUserEdition:React.FC=()=>{
     const [username, setUsername] = useState('') 
     const [email, setEmail] = useState('') 
     const [role, setRole] = useState('')
+    const isAdmin = useStore((state) => state.role) === ADMIN_ROLE
 
     useEffect(() => {
         if (userQuery.isSuccess) {
@@ -26,6 +30,10 @@ const AdminUserEdition:React.FC=()=>{
     },
         [userQuery.data, userQuery.isSuccess]
     );
+
+    if (!isAdmin) {
+        return <Unauthorized />
+    }
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();

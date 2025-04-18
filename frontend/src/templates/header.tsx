@@ -11,10 +11,12 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import PostAddIcon from '@mui/icons-material/PostAdd';
 import { useStore } from '../store/store';
 import { useLogout } from '../api/auth/auth';
+import { ADMIN_ROLE } from '../common';
 
 const Header: React.FC = () => {
     const [menuOpen, setMenuOpen] = useState(false);
     const isLoggedIn = useStore((state) => state.isLoggedIn)
+    const isAdmin = useStore((state) => state.role) === ADMIN_ROLE
     const { mutate: logout } = useLogout()
     
     const toggleMenu = () => {
@@ -44,9 +46,11 @@ const Header: React.FC = () => {
                         </>}
                         {isLoggedIn &&
                             <>
-                                <a href='/new_article'>
-                                    <Button variant='contained' endIcon={<PostAddIcon />}>Add article</Button>
-                                </a>
+                                {isAdmin &&
+                                    <a href='/new_article'>
+                                        <Button variant='contained' endIcon={<PostAddIcon />}>Add article</Button>
+                                    </a>
+                                }
                                 <a>
                                     <Button onClick={() => logout()} variant='contained' endIcon={<LogoutIcon />}>Logout</Button>
                                 </a>
@@ -83,9 +87,11 @@ const Header: React.FC = () => {
                 }
                 {isLoggedIn &&
                 <>
-                    <a href='/new_article'>
-                        <Button variant='contained' endIcon={<PostAddIcon />}>Add article</Button>
-                    </a>
+                    {isAdmin && 
+                        <a href='/new_article'>
+                            <Button variant='contained' endIcon={<PostAddIcon />}>Add article</Button>
+                        </a>
+                    }
                     <br></br>
                     <a>
                         <Button onClick={() => logout()} variant='contained' endIcon={<LogoutIcon />}>Logout</Button>
