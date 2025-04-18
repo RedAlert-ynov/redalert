@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { jsonApi } from "../../jsonApi";
-import { DeleteUserResponse, UpdateUserData, UpdateUserResponse, UsersResponse } from "./users.types";
+import { DeleteUserResponse, UpdateUserData, UpdateUserResponse, UserResponse, UsersResponse } from "./users.types";
 import { useStore } from "../../../store/store";
 import { queryClient } from "../../client";
 
@@ -15,6 +15,19 @@ export function useUsers() {
     return useQuery({
         queryKey: ["admin", "users"],
         queryFn: () => getUsers(accessToken),
+        select: (response) => response.data
+    })
+}
+
+export function getUser(bearerToken: string, userId: number): Promise<UserResponse> {
+    return jsonApi.get({url: `${adminUsersEndpoint}/${userId}`, bearerToken})
+}
+
+export function useUser(userId: number) {
+    const accessToken = useStore((state) => state.accessToken)
+    return useQuery({
+        queryKey: ["admin", "users", userId],
+        queryFn: () => getUser(accessToken, userId),
         select: (response) => response.data
     })
 }

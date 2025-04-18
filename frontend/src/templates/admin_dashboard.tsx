@@ -38,7 +38,7 @@ const UserListItem = (props: {user: User}) => {
         <ul>
             <li>
                 <p>{props.user.username}</p>
-                <a href={`admin_dashboard/user/${props.user.id}`}>
+                <a href={`users/${props.user.id}`}>
                     <Button variant='contained' color="primary">
                         <b>Edit</b>
                     </Button>

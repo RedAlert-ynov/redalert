@@ -15,3 +15,7 @@ export type UpdateUserData = Partial<UpdateData & {
 }>
 
 export type DeleteUserResponse = MessageResponse
+
+export type UserResponse = {
+    data: User
+}
