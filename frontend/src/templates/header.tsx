@@ -35,6 +35,9 @@ const Header: React.FC = () => {
                     <a href='/qui_sommes_nous'>Qui sommes nous?</a>
                     <a href='/concept'>Le concept</a>
                     <a href='/article_list'>Les articles</a>
+                    {isAdmin && 
+                        <a href='/admin_dashboard'>Dashboard admin</a>
+                    }
                     <div className='loginsignup'>
                         {!isLoggedIn && <>
                             <a href='/login'>
@@ -74,6 +77,12 @@ const Header: React.FC = () => {
                 <br></br>
                 <a href='/article_list'>Les articles</a>
                 <br></br>
+                {isAdmin && 
+                    <>
+                        <a href='/admin_dashboard'>Dashboard admin</a>
+                        <br/>
+                    </>
+                    }
                 {!isLoggedIn &&
                 <>
                     <a href='/login'>
